@@ -1,23 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
-<link rel="stylesheet" href="./style.css">
+<title>Vice Lights Cover Lab — GTA 6 cover maker</title>
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
-  </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+<header>
+  <h1><span class="vice">Vice</span> Lights Cover Lab</h1>
+  <p>Turn your photo + caption into a GTA 6-style cover. Fully offline — photos never leave your machine.</p>
+</header>
+<main>
+  <aside>
+    <section>
+      <h2>1 · Photos</h2>
+      <input id="photoInput" type="file" accept="image/*" multiple>
+      <p class="hint">Add one or more photos. Drag a panel to reposition, scroll to zoom.</p>
+      <button id="sampleBtn" class="action secondary" type="button">Load sample photos</button>
+    </section>
+    <section>
+      <h2>2 · Layout</h2>
+      <div class="layout-grid" id="layoutGrid">
+        <button class="layout-btn" type="button" data-layout="nine" aria-pressed="true"><span class="mini"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>9-panel grid</button>
+        <button class="layout-btn" type="button" data-layout="hero" aria-pressed="false"><span class="mini"><i></i><i></i><i></i><i></i></span>Hero + three</button>
+        <button class="layout-btn" type="button" data-layout="four" aria-pressed="false"><span class="mini"><i></i><i></i><i></i><i></i></span>Four-panel</button>
+        <button class="layout-btn" type="button" data-layout="six" aria-pressed="false"><span class="mini"><i></i><i></i><i></i><i></i><i></i><i></i></span>Six-panel</button>
+        <button class="layout-btn" type="button" data-layout="full" aria-pressed="false"><span class="mini"><i></i></span>Full-bleed</button>
+        <button class="layout-btn" type="button" data-layout="tilted" aria-pressed="false"><span class="mini"><i></i><i></i><i></i></span>Tilted snapshot</button>
+      </div>
+    </section>
+    <section>
+      <h2>3 · Grade</h2>
+      <div class="swatches" id="gradeGrid">
+        <button class="swatch sunset" type="button" data-grade="sunset" aria-pressed="true"><span class="dot"></span>Sunset</button>
+        <button class="swatch neon" type="button" data-grade="neon" aria-pressed="false"><span class="dot"></span>Neon</button>
+        <button class="swatch golden" type="button" data-grade="golden" aria-pressed="false"><span class="dot"></span>Golden hour</button>
+        <button class="swatch night" type="button" data-grade="night" aria-pressed="false"><span class="dot"></span>Vice night</button>
+        <button class="swatch noir" type="button" data-grade="noir" aria-pressed="false"><span class="dot"></span>Noir</button>
+      </div>
+    </section>
+    <section>
+      <h2>4 · Lettering</h2>
+      <label class="field" for="titleInput">Title (Anton)</label>
+      <input id="titleInput" type="text" value="VICE LIGHTS" maxlength="24">
+      <label class="field" for="subtitleInput">Subtitle (Pacifico neon script)</label>
+      <input id="subtitleInput" type="text" value="welcome to Leonida" maxlength="40">
+      <label class="field" for="zoomRange">Selected panel zoom</label>
+      <input id="zoomRange" type="range" min="100" max="300" value="120">
+    </section>
+    <section>
+      <h2>5 · Export</h2>
+      <div class="sizes" id="sizeRow">
+        <button type="button" data-size="1080x1080" aria-pressed="false">1080 × 1080</button>
+        <button type="button" data-size="1080x1350" aria-pressed="false">1080 × 1350</button>
+        <button type="button" data-size="1920x1080" aria-pressed="true">1920 × 1080</button>
+        <button type="button" data-size="1080x1920" aria-pressed="false">1080 × 1920 story</button>
+      </div>
+      <p class="hint">Pick a size, then export. One click exports all four sizes.</p>
+      <button id="exportBtn" class="action" type="button">Export PNG</button>
+      <button id="exportAllBtn" class="action secondary" type="button">Export all sizes</button>
+      <button id="undoBtn" class="action secondary" type="button">Undo</button>
+      <button id="redoBtn" class="action secondary" type="button">Redo</button>
+    </section>
+  </aside>
+  <div class="preview">
+    <div class="stage"><canvas id="coverCanvas" width="960" height="540"></canvas></div>
+    <footer>Photos stay on your device. Fonts (Anton + Pacifico, SIL OFL) are bundled locally. No network requests.</footer>
+  </div>
 </main>
-<script type="module" src="./src/main.js"></script>
+<script type="module" src="src/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,16 @@
+/* Vice Lights Cover Lab — bundled fonts, SIL Open Font License 1.1 (see OFL.txt).
+   Anton (display) + Pacifico (neon script). No network: files live in app/fonts/. */
+@font-face {
+  font-family: 'Anton';
+  src: url('Anton-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pacifico';
+  src: url('Pacifico-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
